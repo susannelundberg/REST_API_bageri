@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Tools;
 
 namespace BageriApi.Data;
 
-public class BageriContext(DbContextOptions options) : DbContext(options)
+public class BageriContext(DbContextOptions<BageriContext> options) : DbContext(options)
 {
     public DbSet<Product> Products { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
