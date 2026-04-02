@@ -57,11 +57,32 @@ public class SupplierProductsController(BageriContext context) : ControllerBase
         .Include(sp => sp.Supplier)
         .ToListAsync();
 
-        var data = supplierProduct.Select(sp => new
+        // var data = supplierProduct.Select(sp => new
+        // {
+        //     ProductName = sp.Product.Name,
+        //     SupplierName = sp.Supplier.Name,
+        //     Price = sp.PricePerKg
+        // });
+
+        // var data = supplierProduct.Select(sp => new
+        // {
+        //     ProductName = sp.Product.Name,
+        //     Supplier = supplierProduct.Select(sp => new
+        //     {
+        //         SupplierName = sp.Supplier.Name,
+        //         Price = sp.PricePerKg
+        //     })
+        // });
+
+        var first = supplierProduct.First();
+        var data = (new
         {
-            ProductName = sp.Product.Name,
-            SupplierName = sp.Supplier.Name,
-            Price = sp.PricePerKg
+            productName = first.Product.Name,
+            Supplier = supplierProduct.Select(sp => new
+            {
+                supplierName = sp.Supplier.Name,
+                price = sp.PricePerKg
+            })
         });
 
         return Ok(new { Success = true, StatusCode = 200, Items = "Not defined", Data = data });

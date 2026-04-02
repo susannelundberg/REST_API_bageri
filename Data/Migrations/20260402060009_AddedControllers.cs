@@ -5,7 +5,7 @@
 namespace BageriApi.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class SecondTry : Migration
+    public partial class AddedControllers : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
