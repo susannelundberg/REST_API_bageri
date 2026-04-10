@@ -5,7 +5,7 @@
 namespace BageriApi.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedControllers : Migration
+    public partial class Update : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,8 +16,7 @@ namespace BageriApi.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    ArticleNumber = table.Column<string>(type: "TEXT", nullable: true)
+                    Name = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,7 +46,8 @@ namespace BageriApi.Data.Migrations
                 {
                     ProductId = table.Column<int>(type: "INTEGER", nullable: false),
                     SupplierId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PricePerKg = table.Column<decimal>(type: "TEXT", nullable: false)
+                    PricePerKg = table.Column<decimal>(type: "TEXT", nullable: false),
+                    ArticleNumber = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

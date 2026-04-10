@@ -18,4 +18,11 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<BageriContext>();
+var seed = new SeedData();
+await seed.SeedProducts(context);
+await seed.SeedSuppliers(context);
+await seed.SeedSupplierProducts(context);
+
 app.Run();

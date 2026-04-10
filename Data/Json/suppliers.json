@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Lillgrossisten",
+        "address": "Lillgatan 5",
+        "contactperson": "Anna Larsson",
+        "email": "anna.larsson@sockerbagare.se",
+        "phone": "071-1234567"
+    },
+    {
+        "name": "Storgrossisten",
+        "address": "Storgatan 5",
+        "contactperson": "Karin Larsson",
+        "email": "karin.larsson@sockerbagare.se",
+        "phone": "072-1234567"
+    },
+    {
+        "name": "Sockerbagare",
+        "address": "Nygatan 5",
+        "contactperson": "John Larsson",
+        "email": "John.larsson@sockerbagare.se",
+        "phone": "073-1234567"
+    }
+]

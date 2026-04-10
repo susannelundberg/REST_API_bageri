@@ -22,9 +22,6 @@ namespace BageriApi.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ArticleNumber")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
@@ -66,6 +63,9 @@ namespace BageriApi.Data.Migrations
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ArticleNumber")
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("PricePerKg")
                         .HasColumnType("TEXT");

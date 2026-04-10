@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BageriApi.Data.Migrations
 {
     [DbContext(typeof(BageriContext))]
-    [Migration("20260402060009_AddedControllers")]
-    partial class AddedControllers
+    [Migration("20260410092251_Update")]
+    partial class Update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,9 +24,6 @@ namespace BageriApi.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("ArticleNumber")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
@@ -69,6 +66,9 @@ namespace BageriApi.Data.Migrations
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ArticleNumber")
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("PricePerKg")
                         .HasColumnType("TEXT");

@@ -15,76 +15,29 @@ public class SupplierProductsController(BageriContext context) : ControllerBase
     [HttpPost()]
     public async Task<ActionResult> AddSupplierProduct(SupplierProduct supplierProduct)
     {
-        Supplier supplier = await context.Suppliers.FindAsync(supplierProduct.SupplierId);
-        if(supplier is null) return BadRequest("Leverantör existerar inte");
-
-        Product product = await context.Products.FindAsync(supplierProduct.ProductId);
-        if(product is null) return BadRequest("Produkten existerar inte");
-        
-        SupplierProduct item = new()
+        try
         {
-            ProductId = supplierProduct.ProductId,
-            SupplierId = supplierProduct.SupplierId,
-            PricePerKg = supplierProduct.PricePerKg
-        };
+            Supplier supplier = await context.Suppliers.FindAsync(supplierProduct.SupplierId);
+            if(supplier is null) return BadRequest("Leverantör existerar inte");
 
-        context.SupplierProducts.Add(item);
-        await context.SaveChangesAsync();
-        return Ok();
-
-    }
-
-    [HttpGet()]
-    public async Task<ActionResult> ListAllSupplierProducts()
-    {
-        var item = await context.SupplierProducts
-        .Include(c => c.Supplier)
-        .Select(supplierProduct => new
-        {
-            ProductName = supplierProduct.Product.Name,
-            SupplierName = supplierProduct.Supplier.Name
-        }).ToListAsync();
-
-        return Ok(new {Success = true, StatusCode = 200, Items = item.Count, Data = item});
-    }
-
-    [HttpGet("{id}")]
-    public async Task<ActionResult> FindProduct(int id)
-    {
-        var supplierProduct = await context.SupplierProducts
-        .Where(sp => sp.ProductId == id)
-        .Include(sp => sp.Product)
-        .Include(sp => sp.Supplier)
-        .ToListAsync();
-
-        // var data = supplierProduct.Select(sp => new
-        // {
-        //     ProductName = sp.Product.Name,
-        //     SupplierName = sp.Supplier.Name,
-        //     Price = sp.PricePerKg
-        // });
-
-        // var data = supplierProduct.Select(sp => new
-        // {
-        //     ProductName = sp.Product.Name,
-        //     Supplier = supplierProduct.Select(sp => new
-        //     {
-        //         SupplierName = sp.Supplier.Name,
-        //         Price = sp.PricePerKg
-        //     })
-        // });
-
-        var first = supplierProduct.First();
-        var data = (new
-        {
-            productName = first.Product.Name,
-            Supplier = supplierProduct.Select(sp => new
+            Product product = await context.Products.FindAsync(supplierProduct.ProductId);
+            if(product is null) return BadRequest("Produkten existerar inte");
+            
+            SupplierProduct item = new()
             {
-                supplierName = sp.Supplier.Name,
-                price = sp.PricePerKg
-            })
-        });
+                ProductId = supplierProduct.ProductId,
+                SupplierId = supplierProduct.SupplierId,
+                PricePerKg = supplierProduct.PricePerKg,
+                ArticleNumber = supplierProduct.ArticleNumber
+            };
 
-        return Ok(new { Success = true, StatusCode = 200, Items = "Not defined", Data = data });
+            context.SupplierProducts.Add(item);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+        catch
+        {
+            return StatusCode(500, "Ett fel inträffade");
+        }
     }
 }

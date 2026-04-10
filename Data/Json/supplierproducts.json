@@ -1,0 +1,22 @@
+[
+    {
+        "productid": 1,
+        "supplierid": 1,
+        "priceperkg": 10
+    },
+    {
+        "productid": 1,
+        "supplierid": 2,
+        "priceperkg": 12
+    },
+    {
+        "productid": 2,
+        "supplierid": 2,
+        "priceperkg": 100
+    },
+    {
+        "productid": 3,
+        "supplierid": 3,
+        "priceperkg": 15
+    }
+]
