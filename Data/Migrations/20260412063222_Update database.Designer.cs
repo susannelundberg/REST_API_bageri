@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BageriApi.Data.Migrations
 {
     [DbContext(typeof(BageriContext))]
-    [Migration("20260410092251_Update")]
-    partial class Update
+    [Migration("20260412063222_Update database")]
+    partial class Updatedatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

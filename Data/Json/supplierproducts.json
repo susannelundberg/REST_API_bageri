@@ -2,21 +2,25 @@
     {
         "productid": 1,
         "supplierid": 1,
-        "priceperkg": 10
+        "priceperkg": 10,
+        "articlenumber": "AA-001"
     },
     {
         "productid": 1,
         "supplierid": 2,
-        "priceperkg": 12
+        "priceperkg": 12,
+        "articlenumber": "BB-002"
     },
     {
         "productid": 2,
         "supplierid": 2,
-        "priceperkg": 100
+        "priceperkg": 100,
+        "articlenumber": "CC-003"
     },
     {
         "productid": 3,
         "supplierid": 3,
-        "priceperkg": 15
+        "priceperkg": 15,
+        "articlenumber": "DD-004"
     }
 ]

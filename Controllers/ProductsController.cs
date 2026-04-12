@@ -17,68 +17,58 @@ public class ProductsController(BageriContext context) : ControllerBase
     {
         try
         {
-            context.Products.Add(product);
+            Product item = new()
+            {
+                Name = product.Name
+            };
+
+            context.Products.Add(item);
             await context.SaveChangesAsync();
-            return Ok();
+            return Ok("Produkt tillagd");
         }
-        catch (Exception ex)
+        catch
         {
-            return StatusCode(500, ex.Message);
+            return StatusCode(500, "Ett fel inträffade");
         }
     }
 
     [HttpGet()]
     public async Task<ActionResult> ListAllSupplierProducts()
     {
-        try
+        var item = await context.SupplierProducts
+        .Include(sp => sp.Supplier)
+        .Include(sp => sp.Product)
+        .Select(sp => new
         {
-            var item = await context.SupplierProducts
-            .Include(sp => sp.Supplier)
-            .Include(sp => sp.Product)
-            .Select(sp => new
-            {
-                ProductName = sp.Product.Name,
-                SupplierName = sp.Supplier.Name,
-                pricePerKg = sp.PricePerKg
-            }).ToListAsync(); ;
+            ProductName = sp.Product.Name,
+            SupplierName = sp.Supplier.Name,
+            pricePerKg = sp.PricePerKg
+        }).ToListAsync(); ;
 
-            return Ok(new { Success = true, StatusCode = 200, Items = item.Count, Data = item });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
+        return Ok(new { Success = true, StatusCode = 200, Items = item.Count, Data = item });
+        
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult> FindProduct(int id)
+    public async Task<ActionResult> FindSupplierProduct(int id)
     {
-        try
+        var supplierProduct = await context.SupplierProducts
+        .Where(sp => sp.ProductId == id)
+        .Include(sp => sp.Product)
+        .Include(sp => sp.Supplier)
+        .ToListAsync();
+        var first = supplierProduct.First();
+        var item = new
         {
-            var supplierProduct = await context.SupplierProducts
-            .Where(sp => sp.ProductId == id)
-            .Include(sp => sp.Product)
-            .Include(sp => sp.Supplier)
-            .ToListAsync();
-
-            var first = supplierProduct.First();
-            var item = new
+            productName = first.Product.Name,
+            Supplier = supplierProduct.Select(sp => new
             {
-                productName = first.Product.Name,
-                Supplier = supplierProduct.Select(sp => new
-                {
-                    supplierName = sp.Supplier.Name,
-                    price = sp.PricePerKg,
-                    articleNumber = sp.ArticleNumber
-                })
-            };
+                supplierName = sp.Supplier.Name,
+                price = sp.PricePerKg,
+                articleNumber = sp.ArticleNumber
+            })
+        };
 
-            return Ok(new { Success = true, StatusCode = 200, Items = "Not defined", Data = item });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
+        return Ok(new { Success = true, StatusCode = 200, Items = "Not defined", Data = item });
     }
-
 }

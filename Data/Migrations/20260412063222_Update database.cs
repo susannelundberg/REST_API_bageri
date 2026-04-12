@@ -5,7 +5,7 @@
 namespace BageriApi.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Update : Migration
+    public partial class Updatedatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

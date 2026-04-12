@@ -1,4 +1,4 @@
-﻿namespace BageriApi;
+﻿namespace BageriApi.DTO;
 
 public class PostSupplierProductModel
 {
