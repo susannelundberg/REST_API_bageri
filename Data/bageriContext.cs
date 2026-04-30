@@ -11,6 +11,10 @@ public class BageriContext(DbContextOptions<BageriContext> options) : DbContext(
     public DbSet<Product> Products { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<SupplierProduct> SupplierProducts { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<SalesProduct> SalesProducts { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
