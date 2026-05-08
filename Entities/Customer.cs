@@ -1,4 +1,4 @@
-﻿namespace BageriApi;
+﻿namespace BageriApi.Entities;
 
 public class Customer
 {
@@ -9,4 +9,5 @@ public class Customer
     public string ContactPerson { get; set; }
     public string DeliveryAddress { get; set; }
     public string InvocieAddress { get; set; }
+    public List<Order> OrderHistory { get; set; } = new();
 }

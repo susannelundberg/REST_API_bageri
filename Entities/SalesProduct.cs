@@ -1,4 +1,4 @@
-﻿namespace BageriApi;
+﻿namespace BageriApi.Entities;
 
 public class SalesProduct
 {
@@ -7,6 +7,6 @@ public class SalesProduct
     public double PricePerPiece { get; set; }
     public int ProductWeight { get; set; }
     public int QuantityInPackage { get; set; }
-    public DateTime BestBeforeDate { get; set; } = DateTime.Now;
-    public DateTime ManufacturingDate { get; set; } = DateTime.Now;
+    public DateTime BestBeforeDate { get; set; }
+    public DateTime ManufacturingDate { get; set; }
 }

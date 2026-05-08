@@ -1,4 +1,4 @@
-namespace BageriApi.DTO;
+namespace BageriApi.DTOs;
 
 public class PutSupplierProductModel
 {
